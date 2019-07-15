@@ -52,6 +52,11 @@ class Author {
 	 * @param string $authorUsername value of author's username
 	 */
 	public function __construct($authorId, $authorAvatarUrl, $authorActivationToken, $authorEmail, $authorHash, $authorUsername) {
-
+	$this->setAuthorId($authorId);
+	$this->setAuthorAvatarUrl($authorAvatarUrl);
+	$this->setAuthorActivationToken($authorActivationToken);
+	$this->setAuthorEmail($authorEmail);
+	$this->setAuthorHash($authorHash);
+	$this->setAuthorUsername($authorUsername);
 	}
 }
