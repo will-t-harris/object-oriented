@@ -1,5 +1,6 @@
 <?php
 namespace Wharris21\ObjectOriented;
+
 /**
  * Trait to Validate a mySQL Date
  *

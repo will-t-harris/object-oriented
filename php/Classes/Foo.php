@@ -89,10 +89,16 @@ class Author {
 	 * @param Uuid | string $newAuthorId new value of author id
 	 **/
 	public function setAuthorId($newAuthorId) {
-		$uuid = self::validateUuid($newAuthorId);
-
-		// convert and store the author id
-		$this->authorId = $uuid;
+		try {
+			// validate uuid for author id
+			$uuid = self::validateUuid($newAuthorId);
+			// store author id
+			$this->authorId = $uuid;
+		}
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		// store the author id
 	}
 
 	/**
