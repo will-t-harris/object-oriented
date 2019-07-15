@@ -92,4 +92,13 @@ class Author {
 		return($this->authorAvatarUrl);
 	}
 
+	/**
+	 * setter/mutator method for author avatar url
+	 *
+	 * @param string $newAuthorAvatarUrl;
+	 **/
+	public function setNewAuthorAvatarUrl($newAuthorAvatarUrl) {
+		$this->authorAvatarUrl = $newAuthorAvatarUrl;
+	}
+
 }
