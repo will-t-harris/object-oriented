@@ -82,4 +82,14 @@ class Author {
 		// convert and store the author id
 		$this->authorId = $uuid;
 	}
+
+	/**
+	 * getter/accessor method for author avatar url
+	 *
+	 * @return string value for author avatar url
+	 **/
+	public function getAuthorAvatarUrl() : string {
+		return($this->authorAvatarUrl);
+	}
+
 }
