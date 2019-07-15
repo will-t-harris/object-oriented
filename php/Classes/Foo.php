@@ -128,6 +128,8 @@ class Author {
 
 	/**
 	 * getter/accessor function for author activation token
+	 *
+	 * @return string value for author activation token
 	 **/
 	public function getAuthorActivationToken() : string {
 		return $this->authorActivationToken;
