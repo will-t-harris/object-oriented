@@ -113,15 +113,12 @@ class Author {
 		// verify url is correct
 		$newAuthorAvatarUrl = trim($newAuthorAvatarUrl);
 		$newAuthorAvatarUrl = filter_var($newAuthorAvatarUrl, FILTER_SANITIZE_URL);
-		if(empty($newAuthorAvatarUrl) === TRUE) {
-		throw(new \InvalidArgumentException("avatar url content is empty"));
+		// verify url will fit in database
+		if(strlen($newAuthorAvatarUrl) > 255) {
+			throw(new \RangeException("URL content is too large!"));
 		}
-
-
-
-
-
-
+		// store the avatar url content
+		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
 
 }
