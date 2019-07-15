@@ -31,7 +31,7 @@ class Author {
 	 */
 	private $authorEmail;
 	/**
-	 * string value to verify author's password
+	 * string value for author's password
 	 * @var string $authorHash;
 	 */
 	private $authorHash;
@@ -40,4 +40,18 @@ class Author {
 	 * @var string $authorUsername;
 	 */
 	private $authorUsername;
+
+	/**
+	 * constructor for Author class
+	 *
+	 * @param Uuid $authorId id of this author
+	 * @param string $authorAvatarUrl url for author's avatar image
+	 * @param string $authorActivationToken value for author account activation/verification
+	 * @param string $authorEmail value for author's email address
+	 * @param string $authorHash value of author's password
+	 * @param string $authorUsername value of author's username
+	 */
+	public function __construct($authorId, $authorAvatarUrl, $authorActivationToken, $authorEmail, $authorHash, $authorUsername) {
+
+	}
 }
