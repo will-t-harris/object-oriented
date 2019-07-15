@@ -52,14 +52,25 @@ class Author {
 	 * @param string $authorEmail value for author's email address
 	 * @param string $authorHash value of author's password
 	 * @param string $authorUsername value of author's username
+	 * @throw \InvalidArgumentException if data types are not valid
+	 * @throw \RangeException if data values are out of bounds (strings too long, negative integers for CHAR
+	 * @throw \TypeError if data types violate type hints
+	 * @throw \Exception if some other error occurs
 	 **/
 	public function __construct($authorId, $authorAvatarUrl, $authorActivationToken, $authorEmail, $authorHash, $authorUsername) {
-	$this->setAuthorId($authorId);
-	$this->setAuthorAvatarUrl($authorAvatarUrl);
-	$this->setAuthorActivationToken($authorActivationToken);
-	$this->setAuthorEmail($authorEmail);
-	$this->setAuthorHash($authorHash);
-	$this->setAuthorUsername($authorUsername);
+		try {
+			$this->setAuthorId($authorId);
+			$this->setAuthorAvatarUrl($authorAvatarUrl);
+			$this->setAuthorActivationToken($authorActivationToken);
+			$this->setAuthorEmail($authorEmail);
+			$this->setAuthorHash($authorHash);
+			$this->setAuthorUsername($authorUsername);
+		}
+			// figure out what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+
+		}
+
 	}
 
 	/**
@@ -97,7 +108,7 @@ class Author {
 	 *
 	 * @param string $newAuthorAvatarUrl;
 	 **/
-	public function setNewAuthorAvatarUrl($newAuthorAvatarUrl) {
+	public function setAuthorAvatarUrl($newAuthorAvatarUrl) {
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
 
