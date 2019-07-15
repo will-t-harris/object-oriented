@@ -92,16 +92,15 @@ class Author {
 		try {
 			// validate uuid for author id
 			$uuid = self::validateUuid($newAuthorId);
-			// store author id
-			$this->authorId = $uuid;
-		}
-		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-		// store the author id
+		}
+		// store author id
+		$this->authorId = $uuid;
 	}
 
-	/**
+		/**
 	 * getter/accessor method for author avatar url
 	 *
 	 * @return string value for author avatar url
