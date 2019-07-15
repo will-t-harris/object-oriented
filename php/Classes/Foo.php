@@ -10,6 +10,8 @@ require_once("");
  * @package Wharris21\ObjectOriented
  */
 class Author {
+	use ValidateDate.php;
+	use ValidateUuid.php;
 	/**
 	 * id for this Author; this is the primary key
 	 * @var Uuid $authorId
