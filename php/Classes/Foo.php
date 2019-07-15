@@ -126,4 +126,11 @@ class Author {
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
 
+	/**
+	 * getter/accessor function for author activation token
+	 **/
+	public function getAuthorActivationToken() : string {
+		return $this->authorActivationToken;
+	}
+
 }
