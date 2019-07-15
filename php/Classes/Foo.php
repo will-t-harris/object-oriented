@@ -110,7 +110,18 @@ class Author {
 	 * @param string $newAuthorAvatarUrl;
 	 **/
 	public function setAuthorAvatarUrl($newAuthorAvatarUrl) {
-		$this->authorAvatarUrl = $newAuthorAvatarUrl;
+		// verify url is correct
+		$newAuthorAvatarUrl = trim($newAuthorAvatarUrl);
+		$newAuthorAvatarUrl = filter_var($newAuthorAvatarUrl, FILTER_SANITIZE_URL);
+		if(empty($newAuthorAvatarUrl) === TRUE) {
+		throw(new \InvalidArgumentException("avatar url content is empty"));
+		}
+
+
+
+
+
+
 	}
 
 }
