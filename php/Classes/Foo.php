@@ -135,7 +135,7 @@ class Author {
 	}
 
 	/**
-	 * getter/accessor function for author activation token
+	 * getter/accessor method for author activation token
 	 *
 	 * @return string value for author activation token
 	 **/
@@ -144,7 +144,7 @@ class Author {
 	}
 
 	/**
-	 * setter/mutator function for author verification/recovery token
+	 * setter/mutator method for author verification/recovery token
 	 *
 	 * @param string $newAuthorActivationToken;
 	 * @throw \RangeException if value exceed database limit
@@ -160,5 +160,23 @@ class Author {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
 		$this->authorActivationToken = $newAuthorActivationToken;
+	}
+
+	/**
+	 * getter/accessor method for author email address
+	 *
+	 * @return string value for author email
+	 **/
+	public function getAuthorEmail() {
+		return $this->authorEmail;
+	}
+
+	/**
+	 * setter/accessor method for author email address
+	 *
+	 * @param string $newAuthorEmail;
+	 **/
+	public function setAuthorEmail($newAuthorEmail) {
+
 	}
 }
