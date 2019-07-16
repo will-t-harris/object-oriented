@@ -129,6 +129,7 @@ class Author {
 		if(strlen($newAuthorAvatarUrl) > 255) {
 			throw(new \RangeException("URL exceeds valid range (255 characters)"));
 		}
+		// verify url is a string
 		if(!is_string($newAuthorAvatarUrl)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
@@ -186,8 +187,18 @@ class Author {
 	 * @param string $newAuthorEmail new value of author email address
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
+		// trim whitespace and sanitize string passed in
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING);
+		// if email value is too large, throw range exception
+		if(strlen($newAuthorEmail) > 128) {
+			throw(new \RangeException("Value exceeds valid range (128 characters)"));
+		}
+		// if email value is not a string, throw type exception
+		if(!is_string($newAuthorEmail)) {
+			throw(new \TypeError("Invalid type, expected type string"));
+		}
+		$this->authorEmail = $newAuthorEmail;
 	}
 
 	/**
