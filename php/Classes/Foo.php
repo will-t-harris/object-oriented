@@ -48,7 +48,7 @@ class Author {
 	 *
 	 * @param Uuid $authorId id of this author
 	 * @param string $authorAvatarUrl url for author's avatar image
-	 * @param string $authorActivationToken value for author account activation/verification
+	 * @param string $authorActivationToken value for author account verification/recovery
 	 * @param string $authorEmail value for author's email address
 	 * @param string $authorHash value of author's password
 	 * @param string $authorUsername value of author's username
@@ -87,12 +87,15 @@ class Author {
 	 * setter/mutator method for author id
 	 *
 	 * @param Uuid | string $newAuthorId new value of author id
+	 * @throw \InvalidArgumentException if data types are not valid
+	 * @throw \RangeException if data values are out of bounds (strings too long, negative integers for CHAR
+	 * @throw \Exception if some other error occurs
 	 **/
 	public function setAuthorId($newAuthorId) {
 		try {
 			// validate uuid for author id
 			$uuid = self::validateUuid($newAuthorId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -113,6 +116,7 @@ class Author {
 	 * setter/mutator method for author avatar url
 	 *
 	 * @param string $newAuthorAvatarUrl;
+	 * @throws \RangeException if string is too long
 	 **/
 	public function setAuthorAvatarUrl($newAuthorAvatarUrl) {
 		// verify url is correct
@@ -133,6 +137,15 @@ class Author {
 	 **/
 	public function getAuthorActivationToken() : string {
 		return $this->authorActivationToken;
+	}
+
+	/**
+	 * setter/mutator function for author verification/recovery token
+	 *
+	 * @param string $newAuthorActivationToken;
+	 **/
+	public function setAuthorActivationToken($newAuthorActivationToken) {
+
 	}
 
 }
