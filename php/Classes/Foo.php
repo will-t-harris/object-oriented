@@ -157,11 +157,14 @@ class Author {
 	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorActivationToken($newAuthorActivationToken) {
+		// trim whitespace and sanitize string passed in
 		$newAuthorActivationToken = trim($newAuthorActivationToken);
 		$newAuthorActivationToken = filter_var($newAuthorActivationToken, FILTER_SANITIZE_STRING);
+		// if length of string is too large, throw range exception
 		if(strlen($newAuthorActivationToken) > 32) {
 			throw(new \RangeException("value exceeds valid range(32 characters)"));
 		}
+		// if argument is not a string, throw type exception
 		if(!is_string($newAuthorActivationToken)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
@@ -183,7 +186,8 @@ class Author {
 	 * @param string $newAuthorEmail new value of author email address
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
-
+		$newAuthorEmail = trim($newAuthorEmail);
+		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING);
 	}
 
 	/**
