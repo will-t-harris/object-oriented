@@ -248,6 +248,9 @@ class Author {
 	 * @param string $newAuthorUserName new value for author username
 	 **/
 	public function setAuthorUserName($newAuthorUserName) {
+		// trim whitespace and sanitize string passed in
+		$newAuthorUserName = trim($newAuthorUserName);
+		$newAuthorUserName = filter_var($newAuthorUserName, FILTER_SANITIZE_STRING);
 
 	}
 }
