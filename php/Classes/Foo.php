@@ -116,7 +116,8 @@ class Author {
 	 * setter/mutator method for author avatar url
 	 *
 	 * @param string $newAuthorAvatarUrl;
-	 * @throws \RangeException if string exceeds database limit
+	 * @throw \RangeException if string exceeds database limit
+	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorAvatarUrl($newAuthorAvatarUrl) {
 		// verify url is correct
@@ -126,7 +127,7 @@ class Author {
 		if(strlen($newAuthorAvatarUrl) > 255) {
 			throw(new \RangeException("URL exceeds valid range (255 characters)"));
 		}
-		if(gettype($newAuthorAvatarUrl) !== "string") {
+		if(!is_string($newAuthorAvatarUrl)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
 		// store the avatar url content
@@ -147,6 +148,7 @@ class Author {
 	 *
 	 * @param string $newAuthorActivationToken;
 	 * @throw \RangeException if value exceed database limit
+	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorActivationToken($newAuthorActivationToken) {
 		$newAuthorActivationToken = trim($newAuthorActivationToken);
@@ -154,7 +156,7 @@ class Author {
 		if(strlen($newAuthorActivationToken) > 32) {
 			throw(new \RangeException("value exceeds valid range(32 characters)"));
 		}
-		if(gettype($newAuthorActivationToken) !== 'string') {
+		if(!is_string($newAuthorActivationToken)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
 		$this->authorActivationToken = $newAuthorActivationToken;
