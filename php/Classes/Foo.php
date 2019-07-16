@@ -4,6 +4,8 @@ namespace Wharris21\ObjectOriented;
 require_once("autoload.php");
 require_once("");
 
+use Ramsey\Uuid\Uuid;
+
 /**
  * Class Author
  * This class will contain all of the state variables and methods for any instance of Author
