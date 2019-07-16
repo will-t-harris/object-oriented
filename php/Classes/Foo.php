@@ -149,9 +149,11 @@ class Author {
 		$newAuthorActivationToken = trim($newAuthorActivationToken);
 		$newAuthorActivationToken = filter_var($newAuthorActivationToken, FILTER_SANITIZE_STRING);
 		if(strlen($newAuthorActivationToken) > 32) {
-			throw (new \RangeException("value exceeds valid range(32 characters)"));
+			throw(new \RangeException("value exceeds valid range(32 characters)"));
+		}
+		if(gettype($newAuthorActivationToken) !== 'string') {
+			throw(new \TypeError("value is invalid type, expected type string"));
 		}
 		$this->authorActivationToken = $newAuthorActivationToken;
 	}
-
 }
