@@ -117,7 +117,7 @@ class Author {
 	/**
 	 * setter/mutator method for author avatar url
 	 *
-	 * @param string $newAuthorAvatarUrl;
+	 * @param string $newAuthorAvatarUrl new value for author avatar url
 	 * @throw \RangeException if string exceeds database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -148,7 +148,7 @@ class Author {
 	/**
 	 * setter/mutator method for author verification/recovery token
 	 *
-	 * @param string $newAuthorActivationToken;
+	 * @param string $newAuthorActivationToken new value of author activation token
 	 * @throw \RangeException if value exceed database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -176,7 +176,7 @@ class Author {
 	/**
 	 * setter/mutator method for author email address
 	 *
-	 * @param string $newAuthorEmail;
+	 * @param string $newAuthorEmail new value of author email address
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
 
@@ -194,7 +194,7 @@ class Author {
 	/**
 	 * setter/mutator method for author hash/password
 	 *
-	 * @param string $newAuthorHash;
+	 * @param string $newAuthorHash new value of author hash/password
 	 **/
 	public function setAuthorHash($newAuthorHash) {
 
@@ -212,7 +212,7 @@ class Author {
 	/**
 	 * setter/mutator method for author user name
 	 *
-	 * @param string $newAuthorUserName;
+	 * @param string $newAuthorUserName new value for author username
 	 **/
 	public function setAuthorUserName($newAuthorUserName) {
 
