@@ -231,6 +231,7 @@ class Author {
 		if(!is_string($newAuthorHash)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
+		$this->authorHash = $newAuthorHash;
 	}
 
 	/**
@@ -261,6 +262,6 @@ class Author {
 		if(!is_string($newAuthorUserName)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
-
+		$this->authorUsername = $newAuthorUserName;
 	}
 }
