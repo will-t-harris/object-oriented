@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
  * This class will contain all of the state variables and methods for any instance of Author
  * @package Wharris21\ObjectOriented
  **/
-class Author {
+class Author implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
 	/**
@@ -89,7 +89,7 @@ class Author {
 	 *
 	 * @param Uuid | string $newAuthorId new value of author id
 	 * @throw \InvalidArgumentException if data types are not valid
-	 * @throw \RangeException if data values are out of bounds (strings too long, negative integers for CHAR
+	 * @throw \RangeException if data values are out of bounds (strings too long, negative integers for CHAR)
 	 * @throw \TypeError if data types violate type hints
 	 * @throw \Exception if some other error occurs
 	 **/
@@ -105,7 +105,7 @@ class Author {
 		$this->authorId = $uuid;
 	}
 
-		/**
+	/**
 	 * getter/accessor method for author avatar url
 	 *
 	 * @return string value for author avatar url
@@ -263,5 +263,16 @@ class Author {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
 		$this->authorUsername = $newAuthorUserName;
+	}
+
+	/**
+	 * formats state variables for JSON serialization -- conversion into JSON format
+	 *
+	 * @return array of resulting variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["authorId"] = $this->authorId->toString();
 	}
 }
