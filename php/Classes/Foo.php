@@ -194,7 +194,7 @@ class Author {
 		if(strlen($newAuthorEmail) > 128) {
 			throw(new \RangeException("Value exceeds valid range (128 characters)"));
 		}
-		// if email value is not a string, throw type exception
+		// if email value is not a string, throw type error
 		if(!is_string($newAuthorEmail)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
@@ -216,7 +216,17 @@ class Author {
 	 * @param string $newAuthorHash new value of author hash/password
 	 **/
 	public function setAuthorHash($newAuthorHash) {
-
+		// trim whitespace and sanitize string passed in
+		$newAuthorHash = trim($newAuthorHash);
+		$newAuthorHash = filter_var($newAuthorHash, FILTER_SANITIZE_STRING);
+		// if hash value is too large, throw range exception
+		if(strlen($newAuthorHash) > 97) {
+			throw(new \RangeException("Value exceeds valid range (97 characters)"));
+		}
+		// if hash value is not a string, throw type error
+		if(!is_string($newAuthorHash)) {
+			throw(new \TypeError("Invalid type, expected type string"));
+		}
 	}
 
 	/**
