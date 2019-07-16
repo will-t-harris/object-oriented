@@ -165,7 +165,7 @@ class Author {
 	/**
 	 * getter/accessor method for author email address
 	 *
-	 * @return string value for author email
+	 * @return string value for author email address
 	 **/
 	public function getAuthorEmail() {
 		return $this->authorEmail;
@@ -177,6 +177,24 @@ class Author {
 	 * @param string $newAuthorEmail;
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
+
+	}
+
+	/**
+	 * getter/accessor method for author hash/password
+	 *
+	 * @return string value for author hash/password
+	 **/
+	public function getAuthorHash() {
+		return $this->authorHash;
+	}
+
+	/**
+	 * setter/accessor method for author hash/password
+	 *
+	 * @param string $newAuthorUserName;
+	 **/
+	public function setAuthorUserName($newAuthorUserName) {
 
 	}
 }
