@@ -192,9 +192,9 @@ class Author {
 	/**
 	 * setter/accessor method for author hash/password
 	 *
-	 * @param string $newAuthorUserName;
+	 * @param string $newAuthorHash;
 	 **/
-	public function setAuthorUserName($newAuthorUserName) {
+	public function setAuthorHash($newAuthorHash) {
 
 	}
 }
