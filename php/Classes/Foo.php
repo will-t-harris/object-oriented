@@ -126,6 +126,9 @@ class Author {
 		if(strlen($newAuthorAvatarUrl) > 255) {
 			throw(new \RangeException("URL exceeds valid range (255 characters)"));
 		}
+		if(gettype($newAuthorAvatarUrl) !== "string") {
+			throw(new \TypeError("Invalid type, expected type string"));
+		}
 		// store the avatar url content
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
 	}
@@ -152,7 +155,7 @@ class Author {
 			throw(new \RangeException("value exceeds valid range(32 characters)"));
 		}
 		if(gettype($newAuthorActivationToken) !== 'string') {
-			throw(new \TypeError("value is invalid type, expected type string"));
+			throw(new \TypeError("Invalid type, expected type string"));
 		}
 		$this->authorActivationToken = $newAuthorActivationToken;
 	}
