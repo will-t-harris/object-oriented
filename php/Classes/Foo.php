@@ -89,13 +89,14 @@ class Author {
 	 * @param Uuid | string $newAuthorId new value of author id
 	 * @throw \InvalidArgumentException if data types are not valid
 	 * @throw \RangeException if data values are out of bounds (strings too long, negative integers for CHAR
+	 * @throw \TypeError if data types violate type hints
 	 * @throw \Exception if some other error occurs
 	 **/
 	public function setAuthorId($newAuthorId) {
 		try {
 			// validate uuid for author id
 			$uuid = self::validateUuid($newAuthorId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
