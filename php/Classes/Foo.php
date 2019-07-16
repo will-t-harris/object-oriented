@@ -71,7 +71,6 @@ class Author {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-
 	}
 
 	/**
@@ -117,7 +116,7 @@ class Author {
 	 * setter/mutator method for author avatar url
 	 *
 	 * @param string $newAuthorAvatarUrl;
-	 * @throws \RangeException if string is too long
+	 * @throws \RangeException if string exceeds database limit
 	 **/
 	public function setAuthorAvatarUrl($newAuthorAvatarUrl) {
 		// verify url is correct
@@ -144,9 +143,15 @@ class Author {
 	 * setter/mutator function for author verification/recovery token
 	 *
 	 * @param string $newAuthorActivationToken;
+	 * @throw \RangeException if value exceed database limit
 	 **/
 	public function setAuthorActivationToken($newAuthorActivationToken) {
-
+		$newAuthorActivationToken = trim($newAuthorActivationToken);
+		$newAuthorActivationToken = filter_var($newAuthorActivationToken, FILTER_SANITIZE_STRING);
+		if(strlen($newAuthorActivationToken) > 32) {
+			throw (new \RangeException("value exceeds valid range(32 characters)"));
+		}
+		$this->authorActivationToken = $newAuthorActivationToken;
 	}
 
 }
