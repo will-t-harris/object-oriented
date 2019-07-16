@@ -124,7 +124,7 @@ class Author {
 		$newAuthorAvatarUrl = filter_var($newAuthorAvatarUrl, FILTER_SANITIZE_URL);
 		// verify url will fit in database
 		if(strlen($newAuthorAvatarUrl) > 255) {
-			throw(new \RangeException("URL content is too large!"));
+			throw(new \RangeException("URL exceeds valid range (255 characters)"));
 		}
 		// store the avatar url content
 		$this->authorAvatarUrl = $newAuthorAvatarUrl;
