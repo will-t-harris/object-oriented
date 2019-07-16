@@ -185,6 +185,8 @@ class Author {
 	 * setter/mutator method for author email address
 	 *
 	 * @param string $newAuthorEmail new value of author email address
+	 * @throw \RangeException if value exceed database limit
+	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
 		// trim whitespace and sanitize string passed in
@@ -214,6 +216,8 @@ class Author {
 	 * setter/mutator method for author hash/password
 	 *
 	 * @param string $newAuthorHash new value of author hash/password
+	 *	@throw \RangeException if value exceed database limit
+	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorHash($newAuthorHash) {
 		// trim whitespace and sanitize string passed in
