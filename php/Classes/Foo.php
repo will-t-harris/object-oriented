@@ -2,7 +2,7 @@
 namespace Wharris21\ObjectOriented;
 
 require_once("autoload.php");
-require_once("");
+require_once(dirname(__DIR__) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
