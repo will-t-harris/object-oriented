@@ -133,7 +133,9 @@ class Author {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
 		// store the avatar url content
-		$this->authorAvatarUrl = $newAuthorAvatarUrl;
+		if(filter_var($newAuthorAvatarUrl, FILTER_VALIDATE_URL)) {
+			$this->authorAvatarUrl = $newAuthorAvatarUrl;
+		}
 	}
 
 	/**
