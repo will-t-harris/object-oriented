@@ -246,11 +246,21 @@ class Author {
 	 * setter/mutator method for author user name
 	 *
 	 * @param string $newAuthorUserName new value for author username
+	 *	@throw \RangeException if value exceed database limit
+	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorUserName($newAuthorUserName) {
 		// trim whitespace and sanitize string passed in
 		$newAuthorUserName = trim($newAuthorUserName);
 		$newAuthorUserName = filter_var($newAuthorUserName, FILTER_SANITIZE_STRING);
+		// if username is too long, throw range exception
+		if(strlen($newAuthorUserName) > 32) {
+			throw(new \RangeException("Value exceeds valid range (32 characters)"));
+		}
+		// if username is not a string, throw type error
+		if(!is_string($newAuthorUserName)) {
+			throw(new \TypeError("Invalid type, expected type string"));
+		}
 
 	}
 }
