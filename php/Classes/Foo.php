@@ -135,6 +135,8 @@ class Author {
 		// store the avatar url content
 		if(filter_var($newAuthorAvatarUrl, FILTER_VALIDATE_URL)) {
 			$this->authorAvatarUrl = $newAuthorAvatarUrl;
+		} else {
+			throw(new \InvalidArgumentException("Invalid URL, please try again"));
 		}
 	}
 
