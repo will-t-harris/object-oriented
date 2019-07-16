@@ -172,7 +172,7 @@ class Author {
 	}
 
 	/**
-	 * setter/accessor method for author email address
+	 * setter/mutator method for author email address
 	 *
 	 * @param string $newAuthorEmail;
 	 **/
@@ -190,11 +190,29 @@ class Author {
 	}
 
 	/**
-	 * setter/accessor method for author hash/password
+	 * setter/mutator method for author hash/password
 	 *
 	 * @param string $newAuthorHash;
 	 **/
 	public function setAuthorHash($newAuthorHash) {
+
+	}
+
+	/**
+	 * getter/accessor for author username
+	 *
+	 * @return string value for author user name
+	 **/
+	public function getAuthorUserName() {
+		return $this->authorUsername;
+	}
+
+	/**
+	 * setter/mutator method for author user name
+	 *
+	 * @param string $newAuthorUserName;
+	 **/
+	public function setAuthorUserName($newAuthorUserName) {
 
 	}
 }
