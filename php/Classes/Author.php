@@ -375,6 +375,10 @@ class Author implements \JsonSerializable {
 		if(empty($authorUsername) === TRUE) {
 			throw(new \PDOException("Author username is invalid"));
 		}
+
+		// escape MySQL wild cards
+		$authorUsername = str_replace("_", "\\_", str_replace("%", "\\%", $authorUsername));
+
 		return($authors);
 	}
 
@@ -387,11 +391,6 @@ class Author implements \JsonSerializable {
 		$fields = get_object_vars($this);
 
 		$fields["authorId"] = $this->authorId->toString();
-		$fields["authorAvatarUrl"] = $this->authorAvatarUrl;
-		$fields["authorActivationToken"] = $this->authorActivationToken;
-		$fields["authorEmail"] = $this->authorEmail;
-		$fields["authorHash"] = $this->authorHash;
-		$fields["authorUsername"] = $this->authorUsername;
 
 		return($fields);
 	}
