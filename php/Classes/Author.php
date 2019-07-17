@@ -297,6 +297,23 @@ class Author implements \JsonSerializable {
 	}
 
 	/**
+	 * Deletes this Author from MySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throw \PDOException when MySQL related errors occur
+	 * @throw \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+		// create query template
+		$query = "DELETE FROM author WHERE authorId = :authorId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the placeholder in the template
+		$parameters = ["authorId" => $this->authorId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
 	 * formats state variables for JSON serialization -- conversion into JSON format
 	 *
 	 * @return array of resulting variables to serialize
