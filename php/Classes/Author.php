@@ -272,11 +272,12 @@ class Author implements \JsonSerializable {
 		$fields = get_object_vars($this);
 
 		$fields["authorId"] = $this->authorId->toString();
-		$fields["authorAvatarUrl"] = $this->authorAvatarUrl->toString();
-		$fields["authorActivationToken"] = $this->authorActivationToken->toString();
-		$fields["authorEmail"] = $this->authorEmail->toString();
-		$fields["authorHash"] = $this->authorHash->toString();
-		$fields["authorUsername"] = $this->authorUsername->toString();
+		$fields["authorAvatarUrl"] = $this->authorAvatarUrl;
+		$fields["authorActivationToken"] = $this->authorActivationToken;
+		$fields["authorEmail"] = $this->authorEmail;
+		$fields["authorHash"] = $this->authorHash;
+		$fields["authorUsername"] = $this->authorUsername;
 
+		return($fields);
 	}
 }
