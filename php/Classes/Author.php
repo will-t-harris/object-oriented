@@ -282,10 +282,18 @@ class Author implements \JsonSerializable {
 
 	/**
 	 * Updates this Author in MySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throw \PDOException when MySQL errors occur
+	 * @throw \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function update(\PDO $pdo) : void {
 		// create query template
 		$query = "UPDATE author SET authorId = :authorId, authorAvatarUrl = :authorAvatarUrl, authorActivationToken = :authorActivationToken, authorEmail = :authorEmail, authorHash = :authorHash, authorUsername = :authorUsername";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["authorId" => $this->authorId->getBytes(), "authorAvatarUrl" => $this->authorAvatarUrl, "authorActivationToken" => $this->authorActivationToken, "authorEmail" => $this->authorEmail, "authorHash" => $this->authorHash, "authorUsername" => $this->authorUsername];
+		$statement->execute($parameters);
 	}
 
 	/**
