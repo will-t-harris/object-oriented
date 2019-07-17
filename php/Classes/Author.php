@@ -369,6 +369,12 @@ class Author implements \JsonSerializable {
 	 * @throw \TypeError when variables are not the correct data type
 	 **/
 	public function getAuthorByAuthorUsername(\PDO $pdo, string $authorUsername) : \SplFixedArray {
+		// sanitize the username before searching
+		$authorUsername = trim($authorUsername);
+		$authorUsername = filter_var($authorUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($authorUsername) === TRUE) {
+			throw(new \PDOException("Author username is invalid"));
+		}
 		return($authors);
 	}
 
