@@ -388,7 +388,21 @@ class Author implements \JsonSerializable {
 		$parameters = ["$authorUsername" => $authorUsername];
 		$statement->execute($parameters);
 
-		return($authors);
+		// build an array of author usernames
+		$usernames = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== FALSE) {
+			try {
+				$author = new Author($row["authorId"], $row["authorAvatarUrl"], $row["authorActivationToken"], $row["authorEmail"], $row["authorHash"], $row["authorUsername"]);
+				$authors[$authors->key()] = $author;
+				$authors->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+
+		return($usernames);
 	}
 
 	/**
