@@ -379,6 +379,10 @@ class Author implements \JsonSerializable {
 		// escape MySQL wild cards
 		$authorUsername = str_replace("_", "\\_", str_replace("%", "\\%", $authorUsername));
 
+		// create query template
+		$query = "SELECT authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorHash, authorUsername FROM author WHERE authorUsername LIKE :authorUsername";
+		$statement = $pdo->prepare($query);
+
 		return($authors);
 	}
 
