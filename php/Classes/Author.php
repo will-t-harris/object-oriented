@@ -264,6 +264,15 @@ class Author implements \JsonSerializable {
 	}
 
 	/**
+	 * Inserts this Author into MySQL database
+	 **/
+	public function insert(\PDO $pdo) : void {
+		// create query template
+		$query = "INSERT INTO author(authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorHash, authorUsername) VALUES(:authorId, :authorAvatarUrl, :authorActivationToken, :authorEmail, :authorHash, :authorUsername)";
+		$statement = $pdo->prepare($query);
+	}
+
+	/**
 	 * formats state variables for JSON serialization -- conversion into JSON format
 	 *
 	 * @return array of resulting variables to serialize
