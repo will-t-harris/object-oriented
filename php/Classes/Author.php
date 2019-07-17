@@ -314,7 +314,7 @@ class Author implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the Author by authorId
+	 * Gets a single Author by authorId
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid | string $authorId author id to search for
@@ -357,7 +357,20 @@ class Author implements \JsonSerializable {
 			}
 			// return array
 			return($author);
-		}
+	}
+
+	/**
+	 *	Gets all authors matching author user name
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $authorUsername author user name to search for
+	 * @return \SplFixedArray SplFixedArray of Authors found
+	 * @throw \PDOException when MySQL related errors occur
+	 * @throw \TypeError when variables are not the correct data type
+	 **/
+	public function getAuthorByAuthorUsername(\PDO $pdo, string $authorUsername) : \SplFixedArray {
+		return($authors);
+	}
 
 	/**
 	 * formats state variables for JSON serialization -- conversion into JSON format
