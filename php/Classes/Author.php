@@ -281,6 +281,14 @@ class Author implements \JsonSerializable {
 	}
 
 	/**
+	 * Updates this Author in MySQL
+	 **/
+	public function update(\PDO $pdo) : void {
+		// create query template
+		$query = "UPDATE author SET authorId = :authorId, authorAvatarUrl = :authorAvatarUrl, authorActivationToken = :authorActivationToken, authorEmail = :authorEmail, authorHash = :authorHash, authorUsername = :authorUsername";
+	}
+
+	/**
 	 * formats state variables for JSON serialization -- conversion into JSON format
 	 *
 	 * @return array of resulting variables to serialize
