@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
  * This class will contain all of the state variables and methods for any instance of Author
  * @package Wharris21\ObjectOriented
  **/
-class Author implements \JsonSerializable {
+class Author {
 	use ValidateDate;
 	use ValidateUuid;
 	/**
@@ -268,9 +268,11 @@ class Author implements \JsonSerializable {
 	 *
 	 * @return array of resulting variables to serialize
 	 **/
-	public function jsonSerialize() : array {
-		$fields = get_object_vars($this);
-
-		$fields["authorId"] = $this->authorId->toString();
-	}
+//	public function jsonSerialize() : array {
+//		$fields = get_object_vars($this);
+//
+//		$fields["authorId"] = $this->authorId->toString();
+//		$fields["authorAvatarUrl"] = $this->authorAvatarUrl->toString();
+//
+//	}
 }
