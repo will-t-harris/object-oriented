@@ -383,6 +383,11 @@ class Author implements \JsonSerializable {
 		$query = "SELECT authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorHash, authorUsername FROM author WHERE authorUsername LIKE :authorUsername";
 		$statement = $pdo->prepare($query);
 
+		// bind the author username to the placeholder in the template
+		$authorUsername = "%$authorUsername%";
+		$parameters = ["$authorUsername" => $authorUsername];
+		$statement->execute($parameters);
+
 		return($authors);
 	}
 
