@@ -337,7 +337,27 @@ class Author implements \JsonSerializable {
 		// bind the author id to the placeholder in the template
 		$parameters = ["authorId" => $authorId->getBytes()];
 		$statement->execute($parameters);
-	}
+
+		// grab the author from MySQL
+		try {
+			// instantiate author variable
+			$author = null;
+			// set mode to fetch rows ass associative array
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			// fetch rows and store in variable
+			$row = $statement->fetch();
+			// if row exists
+			if($row !== FALSE) {
+				// set row
+				$author = new Author($row["authorId"], $row["authorAvatarUrl"], $row["authorActivationToken"], $row["authorEmail"], $row["authorHash"], $row["authorUsername"]);
+			}
+		} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+			// return array
+			return($author);
+		}
 
 	/**
 	 * formats state variables for JSON serialization -- conversion into JSON format
