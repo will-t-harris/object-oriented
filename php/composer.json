@@ -1,6 +1,5 @@
 {
   "require": {
-    "ramsey/uuid": "@stable",
-    "ext-json": "@stable"
+    "ramsey/uuid": "@stable"
   }
 }
