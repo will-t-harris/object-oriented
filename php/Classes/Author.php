@@ -389,7 +389,7 @@ class Author implements \JsonSerializable {
 		$statement->execute($parameters);
 
 		// build an array of author usernames
-		$usernames = new \SplFixedArray($statement->rowCount());
+		$authors = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== FALSE) {
 			try {
@@ -402,7 +402,7 @@ class Author implements \JsonSerializable {
 			}
 		}
 
-		return($usernames);
+		return($authors);
 	}
 
 	/**
