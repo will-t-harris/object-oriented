@@ -183,6 +183,7 @@ class Author implements \JsonSerializable {
 	 * setter/mutator method for author email address
 	 *
 	 * @param string $newAuthorEmail new value of author email address
+	 * @throw \InvalidArgumentException if email address field is empty
 	 * @throw \RangeException if value exceed database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -190,6 +191,10 @@ class Author implements \JsonSerializable {
 		// trim whitespace and sanitize string passed in
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING);
+		// if email field is empty, throw invalid argument exception
+		if(empty($newAuthorEmail) === TRUE) {
+			throw(new \InvalidArgumentException("Email address is a required field, please enter an email address"));
+		}
 		// if email value is too large, throw range exception
 		if(strlen($newAuthorEmail) > 128) {
 			throw(new \RangeException("Value exceeds valid range (128 characters)"));
@@ -214,6 +219,7 @@ class Author implements \JsonSerializable {
 	 * setter/mutator method for author hash/password
 	 *
 	 * @param string $newAuthorHash new value of author hash/password
+	 * @throw \InvalidArgumentException if hash/password field is empty
 	 *	@throw \RangeException if value exceed database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -221,6 +227,10 @@ class Author implements \JsonSerializable {
 		// trim whitespace and sanitize string passed in
 		$newAuthorHash = trim($newAuthorHash);
 		$newAuthorHash = filter_var($newAuthorHash, FILTER_SANITIZE_STRING);
+		// if hash/password field is empty, throw invalid argument exception
+		if(empty($newAuthorHash) === TRUE) {
+			throw(new \InvalidArgumentException("Password is a required field, please enter a password"));
+		}
 		// if hash value is too large, throw range exception
 		if(strlen($newAuthorHash) > 97) {
 			throw(new \RangeException("Value exceeds valid range (97 characters)"));
@@ -245,6 +255,7 @@ class Author implements \JsonSerializable {
 	 * setter/mutator method for author user name
 	 *
 	 * @param string $newAuthorUserName new value for author username
+	 * @throw \InvalidArgumentException if user name field is empty
 	 *	@throw \RangeException if value exceed database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -252,6 +263,9 @@ class Author implements \JsonSerializable {
 		// trim whitespace and sanitize string passed in
 		$newAuthorUserName = trim($newAuthorUserName);
 		$newAuthorUserName = filter_var($newAuthorUserName, FILTER_SANITIZE_STRING);
+		if(empty($newAuthorUserName) === TRUE) {
+			throw(new \InvalidArgumentException("Username is a required field, please enter a username value"));
+		}
 		// if username is too long, throw range exception
 		if(strlen($newAuthorUserName) > 32) {
 			throw(new \RangeException("Value exceeds valid range (32 characters)"));
