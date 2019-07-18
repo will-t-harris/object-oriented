@@ -232,12 +232,16 @@ class Author implements \JsonSerializable {
 			throw(new \InvalidArgumentException("Password is a required field, please enter a password"));
 		}
 		// if hash value is too large, throw range exception
-		if(strlen($newAuthorHash) > 97) {
-			throw(new \RangeException("Value exceeds valid range (97 characters)"));
+		if(strlen($newAuthorHash) !== 97) {
+			throw(new \RangeException("Value must be 97 characters"));
 		}
 		// if hash value is not a string, throw type error
 		if(!is_string($newAuthorHash)) {
 			throw(new \TypeError("Invalid type, expected type string"));
+		}
+		$profileHashInfo = password_get_info($newAuthorHash);
+		if($profileHashInfo["algoName"] !== "argon2i") {
+			throw(new \InvalidArgumentException("profile hash is not a valid hash"));
 		}
 		$this->authorHash = $newAuthorHash;
 	}
