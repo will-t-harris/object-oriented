@@ -175,7 +175,7 @@ class Author implements \JsonSerializable {
 	 *
 	 * @return string value for author email address
 	 **/
-	public function getAuthorEmail() {
+	public function getAuthorEmail() : string {
 		return $this->authorEmail;
 	}
 
@@ -211,7 +211,7 @@ class Author implements \JsonSerializable {
 	 *
 	 * @return string value for author hash/password
 	 **/
-	public function getAuthorHash() {
+	public function getAuthorHash() : string {
 		return $this->authorHash;
 	}
 
@@ -247,7 +247,7 @@ class Author implements \JsonSerializable {
 	 *
 	 * @return string value for author user name
 	 **/
-	public function getAuthorUserName() {
+	public function getAuthorUserName() : string{
 		return $this->authorUsername;
 	}
 
