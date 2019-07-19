@@ -239,8 +239,8 @@ class Author implements \JsonSerializable {
 		if(!is_string($newAuthorHash)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
-		$profileHashInfo = password_get_info($newAuthorHash);
-		if($profileHashInfo["algoName"] !== "argon2i") {
+		$authorHashInfo = password_get_info($newAuthorHash);
+		if($authorHashInfo["algoName"] !== "argon2i") {
 			throw(new \InvalidArgumentException("profile hash is not a valid hash"));
 		}
 		$this->authorHash = $newAuthorHash;
