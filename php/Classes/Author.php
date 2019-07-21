@@ -230,7 +230,7 @@ class Author implements \JsonSerializable {
 		$newAuthorHash = trim($newAuthorHash);
 		$newAuthorHash = filter_var($newAuthorHash, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if hash/password field is empty, throw invalid argument exception
-		if(empty($newAuthorHash) === TRUE) {
+		if(empty($newAuthorHash)) {
 			throw(new \InvalidArgumentException("Password is a required field, please enter a password"));
 		}
 		// if hash value is wrong size, throw range exception
@@ -270,7 +270,7 @@ class Author implements \JsonSerializable {
 		// trim whitespace and sanitize string passed in
 		$newAuthorUserName = trim($newAuthorUserName);
 		$newAuthorUserName = filter_var($newAuthorUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newAuthorUserName) === TRUE) {
+		if(empty($newAuthorUserName)) {
 			throw(new \InvalidArgumentException("Username is a required field, please enter a username value"));
 		}
 		// if username is too long, throw range exception
