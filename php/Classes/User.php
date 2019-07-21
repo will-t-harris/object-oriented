@@ -74,7 +74,7 @@ class User implements \JsonSerializable {
 	 *
 	 * @return Uuid value of user id
 	 **/
-	public function getUserId() {
+	public function getUserId(): Uuid {
 		return $this->userId;
 	}
 
@@ -101,7 +101,16 @@ class User implements \JsonSerializable {
 	 * getter method for user hash
 	 * @return string value of user hash
 	 **/
-	public function getUserHash() {
+	public function getUserHash() : string {
 		return $this->userHash;
+	}
+
+	/**
+	 * setter method for user hash
+	 *
+	 *
+	 **/
+	public function setUserHash($newUserHash) {
+
 	}
 }
