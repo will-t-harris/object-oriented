@@ -138,6 +138,11 @@ class User implements \JsonSerializable {
 	}
 
 	/**
+	 * getter method for user location
 	 *
+	 * @return string value of user location
 	 **/
+	public function getUserLocation() {
+		return $this->userLocation;
+	}
 }
