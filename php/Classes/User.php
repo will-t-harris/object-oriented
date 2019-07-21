@@ -82,6 +82,8 @@ class User implements \JsonSerializable {
 	 * setter method for user id
 	 *
 	 * @param Uuid $newUserId
+	 * @throw \InvalidArgumentException if data type is not valid
+	 * @throw \RangeException if data values are out of bounds (values too long)
 	 **/
 	public function setUserId($newUserId) {
 		try {
