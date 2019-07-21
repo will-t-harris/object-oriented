@@ -68,4 +68,13 @@ class User implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
+
+	/**
+	 *getter method for user id
+	 *
+	 *@return Uuid value of user id
+	 **/
+	public function getUserId() {
+		return $this->userId;
+	}
 }
