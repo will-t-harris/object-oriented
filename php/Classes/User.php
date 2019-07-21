@@ -25,7 +25,19 @@ class User implements \JsonSerializable {
 	 * @var string $userHash
 	 */
 	private $userHash;
+	/**
+	 * location for this User
+	 * @var string $userLocation
+	 **/
 	private $userLocation;
+	/**
+	 * email address for this user
+	 * @var string $userEmail
+	 */
 	private $userEmail;
+	/**
+	 * string value for user's phone number
+	 * @var string $userPhoneNumber
+	 */
 	private $userPhoneNumber;
 }
