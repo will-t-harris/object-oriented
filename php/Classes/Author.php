@@ -188,11 +188,11 @@ class Author implements \JsonSerializable {
 	 * @throw \TypeError if value type is not string
 	 **/
 	public function setAuthorEmail($newAuthorEmail) {
-		// trim whitespace and sanitize string passed in
+		// trim whitespace, sanitize string, and validate email passed in
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if email field is empty, throw invalid argument exception
-		if(empty($newAuthorEmail) === TRUE) {
+		if(empty($newAuthorEmail)) {
 			throw(new \InvalidArgumentException("Email address is a required field, please enter an email address"));
 		}
 		// if email value is too large, throw range exception
@@ -203,7 +203,9 @@ class Author implements \JsonSerializable {
 		if(!is_string($newAuthorEmail)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
-		$this->authorEmail = $newAuthorEmail;
+		if(filter_var($newAuthorEmail, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)) {
+			$this->authorEmail = $newAuthorEmail;
+		}
 	}
 
 	/**
