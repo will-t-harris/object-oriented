@@ -122,5 +122,15 @@ class User implements \JsonSerializable {
 		if(strlen($newUserHash) !== 97) {
 			throw(new \RangeException('Value must be 97 characters'));
 		}
+		// if hash type is not string, throw type error
+		if(!is_string($newUserHash)) {
+			throw(new \TypeError('Invalid type, expected type string'));
+		}
+		// if hash algorithm is incorrect, throw invalid argument exception
+		$userHashInfo = password_get_info($newUserHash);
+		if($userHashInfo['algoName'] !== 'argon2i') {
+			throw(new \InvalidArgumentException('profile hash is invalid'));
+		}
+		$this->userHash = $newUserHash;
 	}
 }
