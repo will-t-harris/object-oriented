@@ -158,7 +158,7 @@ class Author implements \JsonSerializable {
 	public function setAuthorActivationToken($newAuthorActivationToken) {
 		// trim whitespace and sanitize string passed in
 		$newAuthorActivationToken = trim($newAuthorActivationToken);
-		$newAuthorActivationToken = filter_var($newAuthorActivationToken, FILTER_SANITIZE_STRING);
+		$newAuthorActivationToken = filter_var($newAuthorActivationToken, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if length of string is too large, throw range exception
 		if(strlen($newAuthorActivationToken) > 32) {
 			throw(new \RangeException("value exceeds valid range(32 characters)"));
@@ -190,7 +190,7 @@ class Author implements \JsonSerializable {
 	public function setAuthorEmail($newAuthorEmail) {
 		// trim whitespace and sanitize string passed in
 		$newAuthorEmail = trim($newAuthorEmail);
-		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING);
+		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if email field is empty, throw invalid argument exception
 		if(empty($newAuthorEmail) === TRUE) {
 			throw(new \InvalidArgumentException("Email address is a required field, please enter an email address"));
@@ -226,7 +226,7 @@ class Author implements \JsonSerializable {
 	public function setAuthorHash($newAuthorHash) {
 		// trim whitespace and sanitize string passed in
 		$newAuthorHash = trim($newAuthorHash);
-		$newAuthorHash = filter_var($newAuthorHash, FILTER_SANITIZE_STRING);
+		$newAuthorHash = filter_var($newAuthorHash, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if hash/password field is empty, throw invalid argument exception
 		if(empty($newAuthorHash) === TRUE) {
 			throw(new \InvalidArgumentException("Password is a required field, please enter a password"));
@@ -266,7 +266,7 @@ class Author implements \JsonSerializable {
 	public function setAuthorUserName($newAuthorUserName) {
 		// trim whitespace and sanitize string passed in
 		$newAuthorUserName = trim($newAuthorUserName);
-		$newAuthorUserName = filter_var($newAuthorUserName, FILTER_SANITIZE_STRING);
+		$newAuthorUserName = filter_var($newAuthorUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newAuthorUserName) === TRUE) {
 			throw(new \InvalidArgumentException("Username is a required field, please enter a username value"));
 		}
