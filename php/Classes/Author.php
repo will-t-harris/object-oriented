@@ -183,7 +183,7 @@ class Author implements \JsonSerializable {
 	 * setter/mutator method for author email address
 	 *
 	 * @param string $newAuthorEmail new value of author email address
-	 * @throw \InvalidArgumentException if email address field is empty
+	 * @throw \InvalidArgumentException if email address field is empty or if email address is not valid
 	 * @throw \RangeException if value exceed database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -205,6 +205,8 @@ class Author implements \JsonSerializable {
 		}
 		if(filter_var($newAuthorEmail, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)) {
 			$this->authorEmail = $newAuthorEmail;
+		} else {
+			throw(new \InvalidArgumentException('Email address not valid, please enter a valid value'));
 		}
 	}
 
