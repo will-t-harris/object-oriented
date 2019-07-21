@@ -118,7 +118,7 @@ class User implements \JsonSerializable {
 		$newUserHash = trim($newUserHash);
 		$newUserHash = filter_var($newUserHash, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if user hash value is empty, throw invalid argument exception
-		if(empty($newUserHash) === TRUE) {
+		if(empty($newUserHash)) {
 			throw(new \InvalidArgumentException('Password is a required field, please enter a password'));
 		}
 		// if hash value is wrong size, throw range exception
@@ -156,7 +156,7 @@ class User implements \JsonSerializable {
 		$newUserLocation = trim($newUserLocation);
 		$newUserLocation = filter_var($newUserLocation, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if value is not a string, throw type error
-		if(!is_string($newUserLocation) === TRUE) {
+		if(!is_string($newUserLocation)) {
 			throw(new \TypeError('Invalid argument type, expected string'));
 		}
 		// if value is too large, throw range exception
@@ -180,4 +180,21 @@ class User implements \JsonSerializable {
 	 *
 	 * @param string $newUserEmail
 	 **/
+	public function setUserEmail($newUserEmail) {
+		// trim and sanitize input
+		$newUserEmail = trim($newUserEmail);
+		$newUserEmail = filter_var($newUserEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_EMAIL_UNICODE);
+		if(empty($newUserEmail)) {
+			throw(new \InvalidArgumentException('Email address is a required field, please enter an email address'));
+		}
+		if(strlen($newUserEmail) > 128) {
+			throw(new \RangeException('Value exceeds valid range (128 characters)'));
+		}
+		if(!is_string($newUserEmail)) {
+			throw(new \TypeError('Invalid type, expected string'));
+		}
+		if(filter_var($newUserEmail, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)) {
+			$this->userEmail = $newUserEmail;
+		}
+	}
 }
