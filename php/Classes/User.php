@@ -142,7 +142,7 @@ class User implements \JsonSerializable {
 	 *
 	 * @return string value of user location
 	 **/
-	public function getUserLocation() {
+	public function getUserLocation() : string {
 		return $this->userLocation;
 	}
 
@@ -165,4 +165,19 @@ class User implements \JsonSerializable {
 		}
 		$this->userLocation = $newUserLocation;
 	}
+
+	/**
+	 * getter method for user email
+	 *
+	 * @return string value of user's email address
+	 **/
+	public function getUserEmail() : string {
+		return $this->userEmail;
+	}
+
+	/**
+	 * setter method for user email
+	 *
+	 * @param string $newUserEmail
+	 **/
 }
