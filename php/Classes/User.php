@@ -44,6 +44,15 @@ class User implements \JsonSerializable {
 	/**
 	 * constructor function for the User class
 	 *
+	 * @param Uuid $newUserId id of this user
+	 * @param string $newUserHash password hash of this user
+	 * @param string $newUserLocation location for this user
+	 * @param string $newUserEmail email address for this user
+	 * @param string $newUserPhoneNumber phone number for this user
+	 * @throw \InvalidArgumentException if data types are not valid
+	 * @throw \RangeException if data values are out of bounds (strings too long)
+	 * @throw \TypeError if data types violate type hints
+	 * @throw \Exception if some other error occurs
 	 **/
 	public function __construct($newUserId, $newUserHash, $newUserLocation, $newUserEmail, $newUserPhoneNumber) {
 		try {

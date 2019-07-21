@@ -55,7 +55,7 @@ class Author implements \JsonSerializable {
 	 * @param string $authorHash value of author's password
 	 * @param string $authorUsername value of author's username
 	 * @throw \InvalidArgumentException if data types are not valid
-	 * @throw \RangeException if data values are out of bounds (strings too long, negative integers for CHAR
+	 * @throw \RangeException if data values are out of bounds (strings too long)
 	 * @throw \TypeError if data types violate type hints
 	 * @throw \Exception if some other error occurs
 	 **/
