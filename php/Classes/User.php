@@ -155,5 +155,14 @@ class User implements \JsonSerializable {
 		// filter and sanitize string
 		$newUserLocation = trim($newUserLocation);
 		$newUserLocation = filter_var($newUserLocation, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		// if value is not a string, throw type error
+		if(!is_string($newUserLocation) === TRUE) {
+			throw(new \TypeError('Invalid argument type, expected string'));
+		}
+		// if value is too large, throw range exception
+		if(strlen($newUserLocation) > 20) {
+			throw(new \RangeException('Value exceeds valid range (20 characters'));
+		}
+		$this->userLocation = $newUserLocation;
 	}
 }
