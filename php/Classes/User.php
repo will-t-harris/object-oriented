@@ -179,6 +179,9 @@ class User implements \JsonSerializable {
 	 * setter method for user email
 	 *
 	 * @param string $newUserEmail
+	 * @throw \InvalidArgumentException if value is empty or if email address is not valid
+	 * @throw \RangeException if value is too large for database
+	 * @throw \TypeError if value is wrong data type
 	 **/
 	public function setUserEmail($newUserEmail) {
 		// trim and sanitize input
@@ -195,6 +198,8 @@ class User implements \JsonSerializable {
 		}
 		if(filter_var($newUserEmail, FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)) {
 			$this->userEmail = $newUserEmail;
+		} else {
+			throw(new \InvalidArgumentException('Email address not valid, please enter a valid value'));
 		}
 	}
 }
