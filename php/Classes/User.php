@@ -108,7 +108,10 @@ class User implements \JsonSerializable {
 	/**
 	 * setter method for user hash
 	 *
-	 *
+	 * @param string $newUserHash
+	 * @throw \InvalidArgumentException if hash value is empty, or using wrong algorithm
+	 * @throw \RangeException if hash value is wrong length
+	 * @throw \TypeError if hash value is wrong type
 	 **/
 	public function setUserHash($newUserHash) {
 		// trim whitespace and filter string passed in
@@ -133,4 +136,8 @@ class User implements \JsonSerializable {
 		}
 		$this->userHash = $newUserHash;
 	}
+
+	/**
+	 *
+	 **/
 }
