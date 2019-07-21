@@ -111,6 +111,8 @@ class User implements \JsonSerializable {
 	 *
 	 **/
 	public function setUserHash($newUserHash) {
-
+		// trim whitespace and filter string passed in
+		$newUserHash = trim($newUserHash);
+		$newUserHash = filter_var($newUserHash, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	}
 }
