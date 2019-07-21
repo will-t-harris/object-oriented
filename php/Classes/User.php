@@ -40,4 +40,23 @@ class User implements \JsonSerializable {
 	 * @var string $userPhoneNumber
 	 */
 	private $userPhoneNumber;
+
+	/**
+	 * constructor function for the User class
+	 *
+	 **/
+	public function __construct($newUserId, $newUserHash, $newUserLocation, $newUserEmail, $newUserPhoneNumber) {
+		try {
+			$this->setUserId($newUserId);
+			$this->setUserHash($newUserHash);
+			$this->setUserLocation($newUserLocation);
+			$this->setUserEmail($newUserEmail);
+			$this->setUserPhoneNumber($newUserPhoneNumber);
+		}
+		// determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 }
