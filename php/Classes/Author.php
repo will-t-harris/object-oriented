@@ -219,7 +219,7 @@ class Author implements \JsonSerializable {
 	 * setter/mutator method for author hash/password
 	 *
 	 * @param string $newAuthorHash new value of author hash/password
-	 * @throw \InvalidArgumentException if hash/password field is empty
+	 * @throw \InvalidArgumentException if hash/password field is empty, or if hash algorithm is incorrect
 	 *	@throw \RangeException if value exceed database limit
 	 * @throw \TypeError if value type is not string
 	 **/
@@ -239,6 +239,7 @@ class Author implements \JsonSerializable {
 		if(!is_string($newAuthorHash)) {
 			throw(new \TypeError("Invalid type, expected type string"));
 		}
+		// if hash algorithm is incorrect, throw invalid argument exception
 		$authorHashInfo = password_get_info($newAuthorHash);
 		if($authorHashInfo["algoName"] !== "argon2i") {
 			throw(new \InvalidArgumentException("profile hash is not a valid hash"));
