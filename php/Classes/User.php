@@ -96,4 +96,12 @@ class User implements \JsonSerializable {
 		// store user id
 		$this->userId = $uuid;
 	}
+
+	/**
+	 * getter method for user hash
+	 * @return string value of user hash
+	 **/
+	public function getUserHash() {
+		return $this->userHash;
+	}
 }
