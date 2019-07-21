@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
  * User class
  * this class will contain all of the state variables and methods for any instance of the User class
  *
- *
+ * @package Wharris21/ObjectOriented
  **/
 class User implements \JsonSerializable {
 	use ValidateUuid;
@@ -70,11 +70,28 @@ class User implements \JsonSerializable {
 	}
 
 	/**
-	 *getter method for user id
+	 * getter method for user id
 	 *
-	 *@return Uuid value of user id
+	 * @return Uuid value of user id
 	 **/
 	public function getUserId() {
 		return $this->userId;
+	}
+
+	/**
+	 * setter method for user id
+	 *
+	 * @param Uuid $newUserId
+	 **/
+	public function setUserId($newUserId) {
+		try {
+			// validate Uuid for user id
+				$uuid = self::validateUuid($newUserId);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		// store user id
+		$this->userId = $uuid;
 	}
 }
