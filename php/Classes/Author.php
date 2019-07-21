@@ -231,7 +231,7 @@ class Author implements \JsonSerializable {
 		if(empty($newAuthorHash) === TRUE) {
 			throw(new \InvalidArgumentException("Password is a required field, please enter a password"));
 		}
-		// if hash value is too large, throw range exception
+		// if hash value is wrong size, throw range exception
 		if(strlen($newAuthorHash) !== 97) {
 			throw(new \RangeException("Value must be 97 characters"));
 		}
