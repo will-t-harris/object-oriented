@@ -145,4 +145,15 @@ class User implements \JsonSerializable {
 	public function getUserLocation() {
 		return $this->userLocation;
 	}
+
+	/**
+	 * setter method for user location
+	 *
+	 * @param $newUserLocation
+	 **/
+	public function setUserLocation($newUserLocation) {
+		// filter and sanitize string
+		$newUserLocation = trim($newUserLocation);
+		$newUserLocation = filter_var($newUserLocation, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	}
 }
