@@ -187,11 +187,9 @@ class User implements \JsonSerializable {
 		// trim and sanitize input
 		$newUserEmail = trim($newUserEmail);
 		$newUserEmail = filter_var($newUserEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_EMAIL_UNICODE);
-		if(empty($newUserEmail)) {
-			throw(new \InvalidArgumentException('Email address is a required field, please enter an email address'));
-		}
-		if(strlen($newUserEmail) > 128) {
-			throw(new \RangeException('Value exceeds valid range (128 characters)'));
+
+		if(empty($newUserEmail) || strlen($newUserEmail) > 128) {
+			throw(new \LengthException('Invalid length, must be between 0 and 128 characters'));
 		}
 		if(!is_string($newUserEmail)) {
 			throw(new \TypeError('Invalid type, expected string'));
@@ -210,6 +208,19 @@ class User implements \JsonSerializable {
 	 **/
 	public function getUserPhoneNumber() : string {
 		return $this->userPhoneNumber;
+	}
+
+	/**
+	 *setter method for user's phone number
+	 *
+	 *@param string $newUserPhoneNumber
+	 *
+	 **/
+	public function setUserPhoneNumber($newUserPhoneNumber) {
+		// trim and sanitize new phone number
+		$newUserPhoneNumber = trim($newUserPhoneNumber);
+		$newUserPhoneNumber = filter_var($newUserPhoneNumber, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
 	}
 
 	// TODO PHONE NUMBER GETTER/SETTER
