@@ -119,7 +119,10 @@ class User implements \JsonSerializable {
 		$newUserHash = filter_var($newUserHash, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		// if user hash value is empty, or too long, throw length exception
 		if(empty($newUserHash) || strlen($newUserHash) !== 97) {
-			throw(new \LengthException('Invalid password length, must be exactly 97 characters'));
+			throw(new \InvalidArgumentException("Password is a required field, please enter a password"));
+		}
+		if(strlen($newUserHash) !== 97) {
+			throw(new \RangeException('Value must be 97 characters'));
 		}
 		// if hash type is not string, throw type error
 		if(!is_string($newUserHash)) {
@@ -186,8 +189,11 @@ class User implements \JsonSerializable {
 		$newUserEmail = trim($newUserEmail);
 		$newUserEmail = filter_var($newUserEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_EMAIL_UNICODE);
 		// if value is wrong length, throw length exception
-		if(empty($newUserEmail) || strlen($newUserEmail) > 128) {
+		if(empty($newUserEmail)) {
 			throw(new \LengthException('Invalid length, must be between 0 and 128 characters'));
+		}
+		if(strlen($newUserEmail) > 128) {
+			throw(new \RangeException('Value exceeds valid range (128 characters)'));
 		}
 		if(!is_string($newUserEmail)) {
 			throw(new \TypeError('Invalid type, expected string'));
