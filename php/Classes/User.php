@@ -202,4 +202,15 @@ class User implements \JsonSerializable {
 			throw(new \InvalidArgumentException('Email address not valid, please enter a valid value'));
 		}
 	}
+
+	/**
+	 * getter method for user's phone number
+	 *
+	 * @return string value of user's phone number
+	 **/
+	public function getUserPhoneNumber() {
+		return $this->userPhoneNumber;
+	}
+
+	// TODO PHONE NUMBER GETTER/SETTER
 }
