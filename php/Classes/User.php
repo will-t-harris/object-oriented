@@ -208,7 +208,7 @@ class User implements \JsonSerializable {
 	 *
 	 * @return string value of user's phone number
 	 **/
-	public function getUserPhoneNumber() {
+	public function getUserPhoneNumber() : string {
 		return $this->userPhoneNumber;
 	}
 
