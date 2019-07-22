@@ -117,13 +117,9 @@ class User implements \JsonSerializable {
 		// trim whitespace and filter string passed in
 		$newUserHash = trim($newUserHash);
 		$newUserHash = filter_var($newUserHash, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		// if user hash value is empty, throw invalid argument exception
-		if(empty($newUserHash)) {
-			throw(new \InvalidArgumentException('Password is a required field, please enter a password'));
-		}
-		// if hash value is wrong size, throw range exception
-		if(strlen($newUserHash) !== 97) {
-			throw(new \RangeException('Value must be 97 characters'));
+		// if user hash value is empty, or too long, throw length exception
+		if(empty($newUserHash) || strlen($newUserHash) !== 97) {
+			throw(new \LengthException('Invalid password length, must be exactly 97 characters'));
 		}
 		// if hash type is not string, throw type error
 		if(!is_string($newUserHash)) {
