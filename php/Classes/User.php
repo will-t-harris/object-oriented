@@ -229,5 +229,16 @@ class User implements \JsonSerializable {
 		}
 	}
 
-	// TODO PHONE NUMBER GETTER/SETTER
+	/**
+	 * formats state variables for JSON serialization -- conversion into JSON format
+	 *
+	 * @return array of resulting variables to serialize
+	 **/
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["userId"] = $this->userId->toString();
+
+		return($fields);
+	}
 }
