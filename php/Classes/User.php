@@ -110,7 +110,7 @@ class User implements \JsonSerializable {
 	 *
 	 * @param string $newUserHash
 	 * @throw \InvalidArgumentException if hash value is empty, or using wrong algorithm
-	 * @throw \RangeException if hash value is wrong length
+	 * @throw \LengthException if hash value is wrong length
 	 * @throw \TypeError if hash value is wrong type
 	 **/
 	public function setUserHash($newUserHash) {
@@ -146,6 +146,8 @@ class User implements \JsonSerializable {
 	 * setter method for user location
 	 *
 	 * @param $newUserLocation
+	 * @throw \TypeError if user location is wrong type
+	 * @throw \LengthException if location value is too long
 	 **/
 	public function setUserLocation($newUserLocation) {
 		// filter and sanitize string
@@ -157,7 +159,7 @@ class User implements \JsonSerializable {
 		}
 		// if value is too large, throw range exception
 		if(strlen($newUserLocation) > 20) {
-			throw(new \RangeException('Value exceeds valid range (20 characters'));
+			throw(new \LengthException('Value exceeds valid range (20 characters'));
 		}
 		$this->userLocation = $newUserLocation;
 	}
@@ -175,15 +177,15 @@ class User implements \JsonSerializable {
 	 * setter method for user email
 	 *
 	 * @param string $newUserEmail
-	 * @throw \InvalidArgumentException if value is empty or if email address is not valid
-	 * @throw \RangeException if value is too large for database
+	 * @throw \InvalidArgumentException if email address is not valid
+	 * @throw \LengthException if value is empty or too large for database
 	 * @throw \TypeError if value is wrong data type
 	 **/
 	public function setUserEmail($newUserEmail) {
 		// trim and sanitize input
 		$newUserEmail = trim($newUserEmail);
 		$newUserEmail = filter_var($newUserEmail, FILTER_SANITIZE_EMAIL, FILTER_FLAG_EMAIL_UNICODE);
-
+		// if value is wrong length, throw length exception
 		if(empty($newUserEmail) || strlen($newUserEmail) > 128) {
 			throw(new \LengthException('Invalid length, must be between 0 and 128 characters'));
 		}
