@@ -63,7 +63,7 @@ class User implements \JsonSerializable {
 			$this->setUserPhoneNumber($newUserPhoneNumber);
 		}
 		// determine what exception type was thrown
-		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError | \LengthException $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -157,7 +157,7 @@ class User implements \JsonSerializable {
 		if(!is_string($newUserLocation)) {
 			throw(new \TypeError('Invalid argument type, expected string'));
 		}
-		// if value is too large, throw range exception
+		// if value is too large, throw length exception
 		if(strlen($newUserLocation) > 20) {
 			throw(new \LengthException('Value exceeds valid range (20 characters'));
 		}
@@ -211,14 +211,22 @@ class User implements \JsonSerializable {
 	/**
 	 *setter method for user's phone number
 	 *
-	 *@param string $newUserPhoneNumber
-	 *
+	 * @param string $newUserPhoneNumber
+	 * @throw \TypeError if value is wrong data type
+	 * @throw \LengthException if value is too long for database
 	 **/
 	public function setUserPhoneNumber($newUserPhoneNumber) {
 		// trim and sanitize new phone number
 		$newUserPhoneNumber = trim($newUserPhoneNumber);
 		$newUserPhoneNumber = filter_var($newUserPhoneNumber, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-
+		// if value is not a string, throw type error
+		if(!is_string($newUserPhoneNumber)) {
+			throw(new \TypeError('Invalid type, expected type string'));
+		}
+		// if value is too long for database, throw length exception
+		if(strlen($newUserPhoneNumber) > 32) {
+			throw(new \LengthException('Value exceeds valid range (32 characters)'));
+		}
 	}
 
 	// TODO PHONE NUMBER GETTER/SETTER
