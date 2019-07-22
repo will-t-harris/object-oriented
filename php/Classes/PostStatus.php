@@ -58,7 +58,9 @@ class PostStatus implements \JsonSerializable {
 	/**
 	 * setter method for post status id
 	 *
-	 *
+	 * @param Uuid | string $newPostStatusId
+	 * @throw \InvalidArgumentException if data type is not valid
+	 * @throw \RangeException if argument is wrong length
 	 **/
 	public function setPostStatusId($newPostStatusId) {
 		try{
