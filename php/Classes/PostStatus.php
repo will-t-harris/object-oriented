@@ -72,4 +72,13 @@ class PostStatus implements \JsonSerializable {
 		}
 		$this->postStatusId = $uuid;
 	}
+
+	/**
+	 * getter method for post status state
+	 *
+	 * @return string value of post status state
+	 **/
+	public function getPostStatusState() {
+		return $this->postStatusState;
+	}
 }
