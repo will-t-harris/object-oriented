@@ -15,7 +15,6 @@ use Ramsey\Uuid\Uuid;
  **/
 class PostStatus implements \JsonSerializable {
 	use ValidateUuid;
-
 	/**
 	 * id for this instance of post status; this is the primary key
 	 * @var Uuid | string postStatusId
@@ -26,4 +25,14 @@ class PostStatus implements \JsonSerializable {
 	 * @var string postStatusState
 	 */
 	private $postStatusState;
+
+	/**
+	 * constructor method for PostStatus class
+	 **/
+	public function __construct($newPostStatusId, $newPostStatusState) {
+		try {
+			$this->postStatusId = $newPostStatusId;
+			$this->postStatusState = $newPostStatusState;
+		}
+	}
 }
