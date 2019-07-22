@@ -28,11 +28,21 @@ class PostStatus implements \JsonSerializable {
 
 	/**
 	 * constructor method for PostStatus class
+	 *
+	 * @param string $newPostStatusId new value for post status id
+	 * @param string $newPostStatusState new value for post status state
+	 * @throw \InvalidArgumentException if data types are not valid
+	 * @throw \RangeException if data values are out of bounds (values too long)
+	 * @throw \TypeError if data types violate type hints
+	 * @throw \Exception if some other error occurs
 	 **/
 	public function __construct($newPostStatusId, $newPostStatusState) {
 		try {
 			$this->postStatusId = $newPostStatusId;
 			$this->postStatusState = $newPostStatusState;
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
 }
