@@ -233,6 +233,7 @@ class User implements \JsonSerializable {
 		if(strlen($newUserPhoneNumber) > 32) {
 			throw(new \LengthException('Value exceeds valid range (32 characters)'));
 		}
+		$this->userPhoneNumber = $newUserPhoneNumber;
 	}
 
 	/**
