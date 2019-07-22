@@ -54,4 +54,20 @@ class PostStatus implements \JsonSerializable {
 	public function getPostStatusId() : Uuid {
 		return $this->postStatusId;
 	}
+
+	/**
+	 * setter method for post status id
+	 *
+	 *
+	 **/
+	public function setPostStatusId($newPostStatusId) {
+		try{
+			// validate Uuid for user id
+			$uuid = self::validateUuid($newPostStatusId);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->postStatusId = $uuid;
+	}
 }
