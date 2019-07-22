@@ -78,7 +78,16 @@ class PostStatus implements \JsonSerializable {
 	 *
 	 * @return string value of post status state
 	 **/
-	public function getPostStatusState() {
+	public function getPostStatusState() : string {
 		return $this->postStatusState;
+	}
+	
+	/**
+	 * setter method for post status state
+	 * 
+	 * @param string $newPostStatusState new value of post status' state
+	 **/
+	public function setPostStatusState($newPostStatusState) {
+		
 	}
 }
