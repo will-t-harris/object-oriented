@@ -370,7 +370,7 @@ class Author implements \JsonSerializable {
 			// fetch rows and store in variable
 			$row = $statement->fetch();
 			// if row exists
-			if($row !== FALSE) {
+			if($row) {
 				// set row
 				$author = new Author($row["authorId"], $row["authorAvatarUrl"], $row["authorActivationToken"], $row["authorEmail"], $row["authorHash"], $row["authorUsername"]);
 			}
